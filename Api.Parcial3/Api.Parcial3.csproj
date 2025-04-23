@@ -221,6 +221,7 @@
     <Compile Include="Classes\clsLogin.cs" />
     <Compile Include="Classes\TokenGenerator.cs" />
     <Compile Include="Classes\TokenValidationHandler.cs" />
+    <Compile Include="Classes\clsTorneo.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\TorneoController.cs" />
