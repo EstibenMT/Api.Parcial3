@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Api.Parcial3.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -19,6 +20,9 @@ namespace Api.Parcial3
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.MessageHandlers.Add(new TokenValidationHandler());
+
         }
     }
 }
