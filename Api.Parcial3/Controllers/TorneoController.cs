@@ -1,39 +1,55 @@
-﻿using System;
+﻿using Api.Parcial3.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
+using WebServicesParcial1.Classes;
 
 namespace Api.Parcial3.Controllers
 {
+    [RoutePrefix("api/torneo")]
     public class TorneoController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        [HttpGet]
+        public async Task<HttpResponseMessage> Consultar(string tipo = null, string nombre = null, DateTime? fecha = null)
         {
-            return new string[] { "value1", "value2" };
+            clsTorneo tor = new clsTorneo();
+            return await tor.ConsultarTorneos(tipo, nombre, fecha);
         }
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        [HttpPost]
+        public async Task<HttpResponseMessage> Insertar([FromBody] Torneo torneo)
         {
-            return "value";
+            clsTorneo tor = new clsTorneo();
+            tor._torneo = torneo;
+            return await tor.Insertar();
         }
 
-        // POST api/<controller>
-        public void Post([FromBody]string value)
+        [HttpPut]
+        public async Task<HttpResponseMessage> Actualizar([FromBody] Torneo torneo)
         {
+            clsTorneo tor = new clsTorneo();
+            tor._torneo = torneo;
+            return await tor.Actualizar();
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        [HttpDelete]
+        public async Task<HttpResponseMessage> Eliminar([FromBody] Torneo torneo)
         {
+            clsTorneo tor = new clsTorneo();
+            tor._torneo = torneo;
+            return await tor.Eliminar();
         }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
+        [HttpDelete]
+        [Route("eliminarxid")]
+        public async Task<HttpResponseMessage> EliminarXId(int id)
         {
+            clsTorneo tor = new clsTorneo();
+            return await tor.Eliminar(id);
         }
     }
 }
