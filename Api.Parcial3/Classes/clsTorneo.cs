@@ -90,7 +90,9 @@ namespace WebServicesParcial1.Classes
                 }
                 else if (fecha.HasValue)
                 {
-                    query = query.Where(t => DbFunctions.TruncateTime(t.FechaTorneo) == fecha.Value.Date);
+                    query = query.Where(t => t.FechaTorneo.Year == fecha.Value.Year &&
+                         t.FechaTorneo.Month == fecha.Value.Month &&
+                         t.FechaTorneo.Day == fecha.Value.Day);
                 }
 
                 List<Torneo> torneos = await query.ToListAsync();
@@ -182,6 +184,11 @@ namespace WebServicesParcial1.Classes
         private Task<Torneo> Consultar(int id)
         {
             return db.Torneos.FirstOrDefaultAsync(T => T.idTorneos == id);
+        }
+
+        internal async Task<HttpResponseMessage> ConsultarTorneos(DateTime fecha)
+        {
+            throw new NotImplementedException();
         }
     }
 }

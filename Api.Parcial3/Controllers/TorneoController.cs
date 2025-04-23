@@ -11,13 +11,31 @@ using WebServicesParcial1.Classes;
 namespace Api.Parcial3.Controllers
 {
     [RoutePrefix("api/torneo")]
+    [Authorize]
     public class TorneoController : ApiController
     {
         [HttpGet]
-        public async Task<HttpResponseMessage> Consultar(string tipo = null, string nombre = null, DateTime? fecha = null)
+        [Route("consultarxtipo")]
+        public async Task<HttpResponseMessage> ConsultarXTipo(string tipo)
         {
             clsTorneo tor = new clsTorneo();
-            return await tor.ConsultarTorneos(tipo, nombre, fecha);
+            return await tor.ConsultarTorneos(tipo);
+        }
+
+        [HttpGet]
+        [Route("consultarxnombre")]
+        public async Task<HttpResponseMessage> ConsultarXNombre(string nombre )
+        {
+            clsTorneo tor = new clsTorneo();
+            return await tor.ConsultarTorneos(null, nombre);
+        }
+
+        [HttpGet]
+        [Route("consultarxfecha")]
+        public async Task<HttpResponseMessage> ConsultarXFecha(DateTime fecha)
+        {
+            clsTorneo tor = new clsTorneo();
+            return await tor.ConsultarTorneos(null, null, fecha);
         }
 
         [HttpPost]

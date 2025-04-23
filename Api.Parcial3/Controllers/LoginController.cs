@@ -9,14 +9,14 @@ using System.Web.Http;
 
 namespace Api.Parcial3.Controllers
 {
-    [RoutePrefix("api/Login")]
+    [RoutePrefix("api/login")]
     //[AllowAnonymous]: Directiva para que el servicio no requiera de autenticación
     //[Authorize]: Directiva para que el servicio necesite de autenticación y un token para que se pueda procesar
     [AllowAnonymous]
     public class LoginController : ApiController
     {
         [HttpPost]
-        [Route("Ingresar")]
+        [Route("ingresar")]
         public IQueryable<LoginRespuesta> Ingresar([FromBody] Login login)
         {
             clsLogin _login = new clsLogin();
